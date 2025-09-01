@@ -4,7 +4,7 @@
       "fileMatch": [
         "/taon.jsonc"
       ],
-      "url": "./taon-config-standalone.schema.json"
+      "url": "./taon-config-container.schema.json"
     }
   ],
   "window.title": "projects/npm/taon-apps  [ ${activeEditorShort} ]",
