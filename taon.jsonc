@@ -1,0 +1,11 @@
+{
+  "type": "container",
+  "version": "v19",
+  "appId": "com.domain.example.taon-apps",
+
+  "packageJsonOverride": {
+    "author": "Dfilipiak",
+    "description": "Description for taon-apps. Hello world!",
+    "private": true
+  }
+}
