@@ -1,5 +1,1 @@
-# taon-apps
-
-Hello from Standalone Project
-
-       
+# TAON PUBLIC APPS
