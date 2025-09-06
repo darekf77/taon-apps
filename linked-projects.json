@@ -1,3 +1,14 @@
 {
-  "projects": []
+  "projects": [
+    {
+      "repoUrl": "https://github.com/darekf77/taon-apps.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "taon-session"
+    },
+    {
+      "repoUrl": "https://github.com/darekf77/taon-apps.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "taon-session"
+    }
+  ]
 }

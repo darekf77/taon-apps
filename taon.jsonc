@@ -2,6 +2,7 @@
   "type": "container",
   "version": "v19",
   "appId": "com.domain.example.taon-apps",
+  "monorepo": true,
 
   "packageJsonOverride": {
     "author": "Dfilipiak",

@@ -34,6 +34,7 @@
 /src/tests/mocha-tests-info.md
 /src/vars.scss
 /testem.log
+/tests-environments
 /Thumbs.db
 /tmp*
 /websql

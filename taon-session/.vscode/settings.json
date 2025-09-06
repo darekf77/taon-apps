@@ -4,15 +4,15 @@
       "fileMatch": [
         "/taon.jsonc"
       ],
-      "url": "./taon-config-container.schema.json"
+      "url": "./taon-config-standalone.schema.json"
     }
   ],
 
-  "window.title": "dfilipiak/npm/taon-apps  [ ${activeEditorShort} ]",
+  "window.title": "npm/taon-apps/taon-session  [ ${activeEditorShort} ]",
 
   "workbench.colorCustomizations": {
-    "activityBar.background": "#22a02c",
-    "statusBar.background": "#22a02c",
+    "activityBar.background": "#b32334",
+    "statusBar.background": "#2e8474",
     "statusBar.debuggingBackground": "#15d8ff"
   },
 
