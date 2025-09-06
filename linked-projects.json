@@ -44,11 +44,6 @@
       "repoUrl": "git@github.com:darekf77/taon-apps.git",
       "defaultBranch": "master",
       "relativeClonePath": "inject-tests"
-    },
-    {
-      "repoUrl": "git@github.com:darekf77/taon-apps.git",
-      "defaultBranch": "master",
-      "relativeClonePath": "taon-session"
     }
   ]
 }
