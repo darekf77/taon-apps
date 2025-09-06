@@ -1,0 +1,12 @@
+{
+  "type": "isomorphic-lib",
+  "version": "v19",
+  "appId": "com.domain.example.inject-tests",
+  "resources": [],
+
+  "packageJsonOverride": {
+    "author": "Dariusz Filipiak",
+    "private": true,
+    "description": "Description for inject-tests. Hello world!"
+  }
+}

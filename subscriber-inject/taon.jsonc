@@ -1,0 +1,12 @@
+{
+  "type": "isomorphic-lib",
+  "version": "v19",
+  "appId": "com.domain.example.subscriber-inject",
+  "resources": [],
+
+  "packageJsonOverride": {
+    "private": true,
+    "author": "Dfilipiak",
+    "description": "Description for subscriber-inject. Hello world!"
+  }
+}
