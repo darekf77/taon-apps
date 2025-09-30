@@ -46,9 +46,9 @@
       "relativeClonePath": "inject-tests"
     },
     {
-      "repoUrl": "git@github.com:darekf77/taon-apps.git",
+      "repoUrl": "git@github.com:darekf77/realtime-contexts.git",
       "defaultBranch": "master",
-      "relativeClonePath": "taon-session"
+      "relativeClonePath": "realtime-contexts"
     }
   ]
 }

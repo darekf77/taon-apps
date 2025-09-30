@@ -1,0 +1,12 @@
+{
+  "type": "isomorphic-lib",
+  "version": "v19",
+  "appId": "com.domain.example.realtime-contexts",
+
+  "packageJsonOverride": {
+    "author": "Darek",
+    "description": "Description for realtime-contexts. Hello world!",
+    "private": true,
+    "scripts": {}
+  }
+}
