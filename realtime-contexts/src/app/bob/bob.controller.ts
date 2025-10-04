@@ -4,6 +4,7 @@ import { ContextsEndpointStorage } from 'taon/src';
 import { _, CoreModels } from 'tnp-core/src';
 
 import { Bob } from './bob';
+import { BobContext } from './bob.context';
 //#endregion
 
 @Taon.Controller({
@@ -20,7 +21,7 @@ export class BobController extends Taon.Base.CrudController<Bob> {
     setTimeout(async () => {
       console.log('triggering bob changes');
       options.ctxStorage
-        .getBy('BobContext')
+        .getBy(BobContext)
         .realtimeServer.triggerCustomEvent('test', {
           heloAlice: 123,
         });

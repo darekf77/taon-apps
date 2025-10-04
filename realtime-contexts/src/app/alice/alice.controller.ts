@@ -4,9 +4,10 @@ import { Taon, ClassHelpers, EndpointContext } from 'taon/src';
 import { _, CoreModels } from 'tnp-core/src';
 
 import { Bob } from '../bob/bob';
-import { BobContext } from '../bob/bob.context';
+import { BobContext, BobContextRemote } from '../bob/bob.context';
 
 import { Alice } from './alice';
+
 //#endregion
 
 @Taon.Controller({
@@ -19,10 +20,10 @@ export class AliceController extends Taon.Base.CrudController<Alice> {
     ctxStorage: ContextsEndpointStorage;
   }): Promise<void> {
     super.afterAllCtxInited(options);
-    console.log(_.kebabCase('helloWorld alice controller'));
-    options.ctxStorage
-      .getBy(BobContext)
-      .realtimeClient.listenChangesCustomEvent('test')
+    const bobRemote = options.ctxStorage.getBy(BobContext);
+    console.log('helloWorld alice controller', bobRemote);
+    bobRemote.realtimeClient
+      .listenChangesCustomEvent('test')
       .subscribe(data => {
         console.log('alice got notified about bob changes', data);
       });

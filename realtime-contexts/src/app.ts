@@ -13,7 +13,7 @@ import { Taon, BaseContext, TAON_CONTEXT, EndpointContext } from 'taon/src';
 import { UtilsOs } from 'tnp-core/src';
 
 import { AliceContext } from './app/alice';
-import { BobContext } from './app/bob/bob.context';
+import { BobContext, BobContextRemote } from './app/bob/bob.context';
 import { HOST_CONFIG } from './app.hosts';
 //#endregion
 
@@ -184,7 +184,12 @@ var MainContext = Taon.createContext(() => ({
 
 async function start(startParams?: Taon.StartParams): Promise<void> {
   await MainContext.initialize();
-  await BobContext.initialize();
+  const ctx = await BobContext.initialize();
+  // console.log('Bob host', ctx.host);
+  // await BobContextRemote.initialize({
+  //   overrideRemoteHost: ctx.host,
+  //   overrideHost: null,
+  // });
   await AliceContext.initialize();
 
   //#region @backend
