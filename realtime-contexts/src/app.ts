@@ -182,13 +182,10 @@ var MainContext = Taon.createContext(() => ({
 }));
 //#endregion
 
-async function start(
-  startParams?: Taon.StartParams,
-): Promise<EndpointContext[]> {
-  const ctxs = [] as EndpointContext[];
-  ctxs.push(await MainContext.initialize());
-  ctxs.push(await BobContext.initialize());
-  ctxs.push(await AliceContext.initialize());
+async function start(startParams?: Taon.StartParams): Promise<void> {
+  await MainContext.initialize();
+  await BobContext.initialize();
+  await AliceContext.initialize();
 
   //#region @backend
   if (
@@ -211,8 +208,6 @@ async function start(
       'users from backend': users,
     });
   }
-
-  return ctxs;
 }
 
 export default start;

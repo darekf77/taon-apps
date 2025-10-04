@@ -8,7 +8,7 @@
     }
   ],
 
-  "window.title": "projects/npm/taon-apps  [ ${activeEditorShort} ]",
+  "window.title": "dfilipiak/npm/taon-apps  [ ${activeEditorShort} ]",
 
   "workbench.colorCustomizations": {
     "activityBar.background": "#22a02c",

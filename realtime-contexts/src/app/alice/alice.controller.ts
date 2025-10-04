@@ -1,8 +1,10 @@
 //#region imports
+import { ContextsEndpointStorage } from 'taon/src';
 import { Taon, ClassHelpers, EndpointContext } from 'taon/src';
-import { _ } from 'tnp-core/src';
+import { _, CoreModels } from 'tnp-core/src';
 
 import { Bob } from '../bob/bob';
+import { BobContext } from '../bob/bob.context';
 
 import { Alice } from './alice';
 //#endregion
@@ -13,13 +15,14 @@ import { Alice } from './alice';
 export class AliceController extends Taon.Base.CrudController<Alice> {
   entityClassResolveFn: () => typeof Alice = () => Alice;
 
-  async afterAllCtxInited(allContexts?: {
-    [contextName: string]: EndpointContext;
+  async afterAllCtxInited(options: {
+    ctxStorage: ContextsEndpointStorage;
   }): Promise<void> {
+    super.afterAllCtxInited(options);
     console.log(_.kebabCase('helloWorld alice controller'));
-
-    allContexts['BobContext'].realtimeClient
-      .listenChangesCustomEvent('test')
+    options.ctxStorage
+      .getBy(BobContext)
+      .realtimeClient.listenChangesCustomEvent('test')
       .subscribe(data => {
         console.log('alice got notified about bob changes', data);
       });
