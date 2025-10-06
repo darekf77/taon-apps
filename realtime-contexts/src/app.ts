@@ -184,12 +184,13 @@ var MainContext = Taon.createContext(() => ({
 
 async function start(startParams?: Taon.StartParams): Promise<void> {
   await MainContext.initialize();
-  const ctx = await BobContext.initialize();
-  // console.log('Bob host', ctx.host);
-  // await BobContextRemote.initialize({
-  //   overrideRemoteHost: ctx.host,
-  //   overrideHost: null,
-  // });
+  const ctxBob = await BobContext.initialize();
+  console.log('Bob remote host', ctxBob.host);
+
+  const ctxBobRemote = await BobContextRemote.initialize();
+
+  console.log('BobContextRemote host', ctxBobRemote.contextType);
+
   await AliceContext.initialize();
 
   //#region @backend

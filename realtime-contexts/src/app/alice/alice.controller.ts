@@ -20,13 +20,19 @@ export class AliceController extends Taon.Base.CrudController<Alice> {
     ctxStorage: ContextsEndpointStorage;
   }): Promise<void> {
     super.afterAllCtxInited(options);
-    const bobRemote = options.ctxStorage.getBy(BobContext);
-    console.log('helloWorld alice controller', bobRemote);
+    console.log('helloWorld alice controller');
+
+    const bobRemote = options.ctxStorage.getBy(BobContextRemote);
     bobRemote.realtimeClient
       .listenChangesCustomEvent('test')
       .subscribe(data => {
-        console.log('alice got notified about bob changes', data);
+        console.log('alice got notified about bobRemote changes', data);
       });
+
+    const bob = options.ctxStorage.getBy(BobContext);
+    bob.realtimeClient.listenChangesCustomEvent('test').subscribe(data => {
+      console.log('alice got notified about bob changes', data);
+    });
   }
 
   // async afterAllCtxInited(): Promise<void> {
