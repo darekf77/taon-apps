@@ -1,0 +1,11 @@
+{
+  "type": "isomorphic-lib",
+  "version": "v19",
+  "appId": "com.domain.example.request-failure",
+
+  "packageJsonOverride": {
+    "author": "Darek",
+    "description": "Description for request-failure. Hello world!",
+    "private": true
+  }
+}

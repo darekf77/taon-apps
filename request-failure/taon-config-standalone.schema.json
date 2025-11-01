@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$ref": "#/definitions/Models.TaonJsonContainer",
+  "$ref": "#/definitions/Models.TaonJsonStandalone",
   "definitions": {
-    "Models.TaonJsonContainer": {
+    "Models.TaonJsonStandalone": {
       "type": "object",
       "properties": {
         "version": {
@@ -5278,9 +5278,25 @@
                   ]
                 }
               ]
+            },
+            "lastBuildTagHash": {
+              "type": "string"
+            },
+            "publisher": {
+              "type": "string"
+            },
+            "displayName": {
+              "type": "string"
             }
           },
           "additionalProperties": false
+        },
+        "removeAfterPullingFromGit": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Folders to remove after pulling from git. Usefull when you have some folders that are not needed in git but there just waiting to be deleted after pulling from git. This may be useful after refactor/moving huge folders around."
         },
         "overrided": {
           "type": "object",
@@ -5296,33 +5312,136 @@
           "additionalProperties": false,
           "deprecated": true
         },
+        "overrideNpmName": {
+          "type": "string",
+          "description": "override npm name for build/relese"
+        },
+        "appId": {
+          "type": "string",
+          "description": "Application ID for standalone project. This is used to identify the application inside application stores,"
+        },
+        "numberOfContexts": {
+          "type": "number",
+          "description": "Number of contexts for this project. (default 2) Number can't be less than 2. This property tells taon how many ports/variables needs to be assigned inside app.hosts.ts"
+        },
+        "overrideNameWhenInsideOrganization": {
+          "type": "string",
+          "description": "it override name of project when is inside container that is organization.\n\nProperty \"overrideNpmName\" can override this name."
+        },
+        "overrideNameForCli": {
+          "type": "string",
+          "description": "override name of cli tool created from project"
+        },
         "type": {
           "type": "string",
-          "const": "container"
+          "const": "isomorphic-lib"
         },
         "resources": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "description": "Static resurces for site project, that are going to be included in release dist"
+          "description": "Static resurces for standalone project, that are going to be included in release dist"
         },
-        "monorepo": {
-          "type": "boolean",
-          "description": "Project is monorepo"
-        },
-        "organization": {
-          "type": "boolean",
-          "description": "Project is organization/scope (like"
-        },
-        "microFrontendMainProjectName": {
+        "baseContentUrl": {
           "type": "string",
-          "description": "Container projects can be used as micro frontends with router:  <site-path>/  (microFrontendMainProjectName)  <site-path>/_/other-project-name"
+          "description": "Base url for content (docs, md files etc.) Required if README.md has relative pathes to links"
+        },
+        "baseImagesUrl": {
+          "type": "string",
+          "description": "Base url for content (docs, md files etc.) Required if README.md has relative pathes to images"
+        },
+        "storeGeneratedAssetsInRepository": {
+          "type": "boolean",
+          "default": "false\nBy default generated assets from logo.png are not stored\nin repository"
+        },
+        "dependenciesNamesForNpmLib": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "At beginning after node_modules installation taon is checking is packages are installed - if not it will throw error. Also.. this dependencies are going to be included in released npm lib as dependencies."
+        },
+        "peerDependenciesNamesForNpmLib": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "At beginning after node_modules installation taon is checking is packages are installed - if not it will throw error. Also.. this peerDependencies are going to be included in released npm lib as peerDependencies."
+        },
+        "optionalDependenciesNamesForNpmLib": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "At beginning after node_modules installation taon is checking is packages are installed - if not it will throw error. Also.. this optionalDependencies are going to be included in released npm lib as optionalDependencies."
+        },
+        "singleFileBundlingPackages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string",
+                "description": "Description of external package\n- why it is external\n- what is it used for etc."
+              },
+              "packageName": {
+                "type": "string",
+                "description": "Name of package that is external"
+              },
+              "isExternalFor": {
+                "$ref": "#/definitions/Models.TaonArtifactInclude",
+                "description": "Specify for which artifacts this package is external Example: vscode - for vscode plugin (vscode is in runtime of vscode plugin) electron - for electron apps (electron is in runtime of electron app)"
+              },
+              "replaceWithNothing": {
+                "$ref": "#/definitions/Models.TaonArtifactInclude",
+                "description": "replace with nothing require('packageName') - if still is somewhere is final code"
+              },
+              "includeInBundleNodeModules": {
+                "$ref": "#/definitions/Models.TaonArtifactInclude",
+                "description": "! FOR NOW ONLY FOR: 'electron-app' and 'angular-node-app'\n\nNative stuff that can't be minified and needs to be included in bundle. Taon will perform npm install for all packages marked with this"
+              }
+            },
+            "required": [
+              "description",
+              "packageName"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Provide information about external packages for single file bundling process"
+        },
+        "additionalNpmNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "so I can release same npm lib with different name",
+          "deprecated": "does not make sense"
+        },
+        "isUsingOwnNodeModulesInsteadCoreContainer": {
+          "type": "boolean",
+          "description": "Project is using own node_modules instead of core container"
+        },
+        "shouldGenerateAutogenIndexFile": {
+          "type": "boolean",
+          "description": "generate src/lib/index._auto-generated_.ts with all exports from lib ts files"
+        },
+        "autoReleaseConfigAllowedItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Models.TaonAutoReleaseItem"
+          },
+          "description": "Auto release helps with releasing multiple projects from a local machine. This is useful when we don't have Taon Cloud set up and want to release all projects with a single command."
         }
       },
       "required": [
+        "dependenciesNamesForNpmLib",
         "isCoreProject",
+        "optionalDependenciesNamesForNpmLib",
         "packageJsonOverride",
+        "peerDependenciesNamesForNpmLib",
+        "shouldGenerateAutogenIndexFile",
+        "singleFileBundlingPackages",
         "type"
       ],
       "additionalProperties": false
@@ -5336,7 +5455,10 @@
         "v4",
         "v16",
         "v18",
-        "v20"
+        "v19",
+        "v20",
+        "v21",
+        "v22"
       ]
     },
     "JsonValue": {
@@ -6203,6 +6325,89 @@
       },
       "additionalProperties": false,
       "description": "An alternative configuration for workspaces."
+    },
+    "Models.TaonArtifactInclude": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "npm-lib-and-cli-tool",
+              "angular-node-app",
+              "electron-app",
+              "mobile-app",
+              "vscode-plugin",
+              "docs-webapp"
+            ]
+          }
+        },
+        {
+          "type": "string",
+          "const": "*"
+        }
+      ]
+    },
+    "Models.TaonAutoReleaseItem": {
+      "type": "object",
+      "properties": {
+        "artifactName": {
+          "type": "string",
+          "enum": [
+            "npm-lib-and-cli-tool",
+            "angular-node-app",
+            "electron-app",
+            "mobile-app",
+            "vscode-plugin",
+            "docs-webapp"
+          ]
+        },
+        "envName": {
+          "type": "string",
+          "enum": [
+            "localhost",
+            "dev",
+            "stage",
+            "prod",
+            "test",
+            "qa",
+            "sandbox",
+            "uat",
+            "preprod",
+            "demo",
+            "docs",
+            "static-pages",
+            "ci",
+            "training"
+          ],
+          "description": "if not proviede default  env.<artifact-name>.__.ts will be in use"
+        },
+        "envNumber": {
+          "type": "number",
+          "description": "example for dev environtment > undefined - env.<artifact-name>.dev.ts > 1 - env.<artifact-name>.dev1.ts > 2 - env.<artifact-name>.dev2.ts ..."
+        },
+        "skip": {
+          "type": "boolean",
+          "description": "skip release of this artifact"
+        },
+        "releaseType": {
+          "$ref": "#/definitions/ReleaseType",
+          "description": "select release type for automatic release"
+        }
+      },
+      "required": [
+        "artifactName"
+      ],
+      "additionalProperties": false
+    },
+    "ReleaseType": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "local",
+        "cloud",
+        "static-pages"
+      ]
     }
   }
 }

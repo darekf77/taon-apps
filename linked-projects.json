@@ -49,6 +49,11 @@
       "repoUrl": "git@github.com:darekf77/realtime-contexts.git",
       "defaultBranch": "master",
       "relativeClonePath": "realtime-contexts"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/request-failure.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "request-failure"
     }
   ]
 }
