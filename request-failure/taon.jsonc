@@ -6,6 +6,7 @@
   "packageJsonOverride": {
     "author": "Darek",
     "description": "Description for request-failure. Hello world!",
-    "private": true
+    "private": true,
+    "scripts": {}
   }
 }
