@@ -2,10 +2,10 @@
 import { Taon, BaseContext } from 'taon/src';
 
 import { HOST_CONFIG } from '../../app.hosts';
+import { MIGRATIONS_CLASSES_FOR_AliceContext } from '../../migrations';
 
 import { Alice } from './alice';
 import { AliceController } from './alice.controller';
-import { MIGRATIONS_CLASSES_FOR_AliceContext } from '../../migrations';
 //#endregion
 
 export const AliceContext = Taon.createContext(() => ({

@@ -2,10 +2,13 @@
 import { Taon, BaseContext } from 'taon/src';
 
 import { HOST_CONFIG } from '../../app.hosts';
+import {
+  MIGRATIONS_CLASSES_FOR_AliceContext,
+  MIGRATIONS_CLASSES_FOR_BobContext,
+} from '../../migrations';
 
 import { Bob } from './bob';
 import { BobController } from './bob.controller';
-import { MIGRATIONS_CLASSES_FOR_AliceContext, MIGRATIONS_CLASSES_FOR_BobContext } from '../../migrations';
 //#endregion
 
 export const BobContext = Taon.createContext(() => ({
@@ -36,3 +39,7 @@ export const BobContext = Taon.createContext(() => ({
   entities: { Bob },
   controllers: { BobController },
 }));
+
+export const BobContextRemote = BobContext.cloneAsRemote({
+  overrideRemoteHost: HOST_CONFIG['BobContext'].host,
+});

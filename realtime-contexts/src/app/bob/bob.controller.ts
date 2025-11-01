@@ -1,8 +1,10 @@
 //#region imports
 import { Taon, ClassHelpers, EndpointContext } from 'taon/src';
-import { _ } from 'tnp-core/src';
+import { ContextsEndpointStorage } from 'taon/src';
+import { _, CoreModels } from 'tnp-core/src';
 
 import { Bob } from './bob';
+import { BobContext } from './bob.context';
 //#endregion
 
 @Taon.Controller({
@@ -11,14 +13,18 @@ import { Bob } from './bob';
 export class BobController extends Taon.Base.CrudController<Bob> {
   entityClassResolveFn: () => typeof Bob = () => Bob;
 
-  async afterAllCtxInited(all: {
-    [contextName: string]: EndpointContext;
+  async afterAllCtxInited(options: {
+    ctxStorage: ContextsEndpointStorage;
   }): Promise<void> {
-    super.afterAllCtxInited(all);
-    console.log(_.kebabCase('helloWorld bob controller'), all);
+    super.afterAllCtxInited(options);
+
     setTimeout(async () => {
       console.log('triggering bob changes');
-      all['BobContext'].realtimeServer.triggerCustomEvent('test', { heloAlice: 123 });
+      options.ctxStorage
+        .getBy(BobContext)
+        .realtimeServer.triggerCustomEvent('test', {
+          heloAlice: 123,
+        });
     }, 3000);
   }
 
