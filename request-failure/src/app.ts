@@ -14,7 +14,6 @@ import {
   BaseContext,
   TAON_CONTEXT,
   EndpointContext,
-  TaonHttpResponseError,
 } from 'taon/src';
 import { UtilsOs } from 'tnp-core/src';
 
@@ -199,11 +198,11 @@ class UserController extends Taon.Base.CrudController<User> {
         return this.helloWorld().request();
       },
       statusCheck: response => response.body.text === 'hello world niga',
-      actionOnBackendError: ({ errorData, reqIndexNum }) => {
-        if (errorData instanceof TaonHttpResponseError) {
-          console.warn(errorData.body.json);
+      loopRequestsOnBackendError: ({ taonError, reqIndexNum }) => {
+        if (taonError) {
+          console.warn(taonError.body.json);
         }
-        console.log({ errorData, reqIndexNum });
+        console.log({ taonError, reqIndexNum });
         return reqIndexNum < 6;
       },
     });
