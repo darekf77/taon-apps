@@ -54,6 +54,16 @@
       "repoUrl": "git@github.com:darekf77/request-failure.git",
       "defaultBranch": "master",
       "relativeClonePath": "request-failure"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/multiple-contexts.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "multiple-contexts"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/socket-table.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "socket-table"
     }
   ]
 }

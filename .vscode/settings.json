@@ -8,7 +8,7 @@
     }
   ],
 
-  "window.title": "projects/npm/taon-apps  [ ${activeEditorShort} ]",
+  "window.title": "dfilipiak/npm/taon-apps  [ ${activeEditorShort} ]",
 
   "workbench.colorCustomizations": {
     "activityBar.background": "#22a02c",
@@ -99,7 +99,10 @@
     "Thumbs.db": true,
     "browser": true,
     "websql": true,
+    "eslint-rules": true,
+    "dist-prod": true,
     "dist-nocutsrc": true,
+    "dist-nocutsrc-prod": true,
     "package-lock.json": true,
     "chrome-profiler-events*.json": true,
     "speed-measure-plugin*.json": true,
@@ -117,8 +120,11 @@
     ".prettierc": true,
     "angular.json": true,
     ".prettierrc.json": true,
+    ".eslintrc.js": true,
     ".eslintrc.json": true,
     ".npmrc": true,
+    ".yarnrc": true,
+    ".idea": true,
     ".prettierignore": true,
     ".prettierrc": true,
     "run.js": true,
@@ -128,6 +134,7 @@
     "update-vscode-package-json.js": true,
     "tsconfig*": true,
     "webpack.*": true,
+    ".eslintrc*": true,
     "tslint.*": true,
     "*.schema.json": true
   },
@@ -161,6 +168,17 @@
     ".taon": true,
     ".tnp": true,
     "dist-*": true,
-    "**/dist-*": true
-  }
+    "**/dist-*": true,
+    "*.rest": true,
+    "**/*.rest": true
+  },
+
+  "typescript.suggest.autoImports": false,
+  "javascript.suggest.autoImports": false,
+
+  "files.associations": {
+    "tsconfig.json": "json"
+  },
+
+  "search.followSymlinks": false
 }

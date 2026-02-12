@@ -1,0 +1,28 @@
+{
+  "extends": "./tsconfig.isomorphic.json",
+  "compilerOptions": {
+    "moduleResolution": "nodenext",
+    "strictNullChecks": false,
+    "rootDir": "./src",
+    "paths": {
+      "@lib": [
+        "./src/lib"
+      ],
+      "@lib/*": [
+        "./src/lib/*"
+      ],
+      "socket-table/src": [
+        "./src/lib"
+      ],
+      "socket-table/src/*": [
+        "./src/lib/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "src/assets"
+  ]
+}

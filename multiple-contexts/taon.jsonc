@@ -1,0 +1,32 @@
+{
+  "type": "isomorphic-lib",
+  "version": "v21",
+  "appId": "com.domain.example.multiple-contexts",
+
+  "autoReleaseConfigAllowedItems": [
+    {
+      "artifactName": "npm-lib-and-cli-tool",
+      "taskName": "npm",
+    },
+    {
+      "artifactName": "angular-node-app",
+      "releaseType": "static-pages",
+      "taskName": "static-pages",
+    },
+    {
+      "artifactName": "angular-node-app",
+      "releaseType": "manual",
+      "taonInstanceIp": "127.0.0.1",
+      "taskName": "local-demo",
+    },
+  ],
+
+  "shouldGenerateAutogenIndexFile": true,
+
+  "packageJsonOverride": {
+    "author": "Darek",
+    "description": "Description for multiple-contexts. Hello world!",
+    "private": true,
+    "scripts": {},
+  },
+}
