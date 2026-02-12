@@ -23,7 +23,6 @@
       "diff",
       "express",
       "express-fileupload",
-      "express-serve-static-core",
       "fs-extra",
       "glob",
       "http-proxy",
@@ -34,7 +33,6 @@
       "minimatch",
       "multer",
       "node",
-      "plist",
       "progress",
       "semver",
       "vitest/globals"
