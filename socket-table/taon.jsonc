@@ -27,6 +27,7 @@
   "packageJsonOverride": {
     "author": "Dfilipiak",
     "description": "Description for socket-table. Hello world!",
-    "private": true
+    "private": true,
+    "scripts": {}
   }
 }
