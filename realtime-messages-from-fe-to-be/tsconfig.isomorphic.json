@@ -1,30 +1,43 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "declaration": true,
-    "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "module": "commonjs",
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "target": "es2022",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "lib": [
       "es2022",
       "dom"
     ],
-    "types": [
-      "node"
-    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "dist",
     "rootDir": "./tmp-src",
-    "outDir": "dist"
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "target": "es2022",
+    "types": [
+      "body-parser",
+      "cors",
+      "dateformat",
+      "diff",
+      "express",
+      "express-fileupload",
+      "fs-extra",
+      "glob",
+      "http-proxy",
+      "http-proxy-middleware",
+      "json5",
+      "lodash",
+      "lodash-es",
+      "minimatch",
+      "multer",
+      "node",
+      "progress",
+      "semver",
+      "vitest/globals"
+    ]
   },
-  "include": [
-    "tmp-src/**/*"
-  ],
   "exclude": [
     "preview",
     "projects",
@@ -40,5 +53,8 @@
     "src/**/*.spec.ts",
     "tmp-site-src",
     "tmp-tests-context"
+  ],
+  "include": [
+    "tmp-src/**/*"
   ]
 }
