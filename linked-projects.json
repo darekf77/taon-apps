@@ -64,6 +64,11 @@
       "repoUrl": "git@github.com:darekf77/socket-table.git",
       "defaultBranch": "master",
       "relativeClonePath": "socket-table"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/backend-backend-realtime.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "backend-backend-realtime"
     }
   ]
 }

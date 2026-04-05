@@ -1,0 +1,143 @@
+// THIS FILE IS GENERATED - DO NOT MODIFY
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Vitest Debug (all *.test.ts files)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+      "args": [
+        "run",
+        "--environment",
+        "node",
+        "--testTimeout",
+        "60000"
+      ],
+      "console": "integratedTerminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "smartStep": true
+    },
+    {
+      "name": "Vitest Debug (editor active test file)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+      "args": [
+        "run",
+        "${fileBasenameNoExtension}",
+        "--environment",
+        "node",
+        "--testTimeout",
+        "60000"
+      ],
+      "console": "integratedTerminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "smartStep": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug/Start Server",
+      "program": "${workspaceFolder}/run.js",
+      "args": [],
+      "runtimeArgs": [
+        "--preserve-symlinks"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug/Start Additional Server 1",
+      "program": "${workspaceFolder}/run.js",
+      "args": [
+        "additionalEntrypointId=1"
+      ],
+      "runtimeArgs": [
+        "--preserve-symlinks"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug/Start Additional Server 2",
+      "program": "${workspaceFolder}/run.js",
+      "args": [
+        "additionalEntrypointId=2"
+      ],
+      "runtimeArgs": [
+        "--preserve-symlinks"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug/Start Additional Server 3",
+      "program": "${workspaceFolder}/run.js",
+      "args": [
+        "additionalEntrypointId=3"
+      ],
+      "runtimeArgs": [
+        "--preserve-symlinks"
+      ]
+    },
+    {
+      "name": "Debug/Start Electron",
+      "type": "node",
+      "request": "launch",
+      "protocol": "inspector",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+      "trace": "verbose",
+      "runtimeArgs": [
+        "--serve",
+        ".",
+        "--remote-debugging-port=9888"
+      ],
+      "windows": {
+        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
+      }
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach to global cli tool",
+      "autoAttachChildProcesses": false,
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "port": 9222
+    },
+    {
+      "name": "Debug/Start Vscode Plugin",
+      "type": "extensionHost",
+      "request": "launch",
+      "runtimeExecutable": "${execPath}",
+      "sourceMaps": true,
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**"
+      ],
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/tmp-vscode-proj/development/backend-backend-realtime"
+      ],
+      "preLaunchTask": "Update package.json vscode metadata"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Run All Server",
+      "configurations": [
+        "Debug/Start Server",
+        "Debug/Start Additional Server 1",
+        "Debug/Start Additional Server 2",
+        "Debug/Start Additional Server 3"
+      ]
+    }
+  ]
+}
+// THIS FILE IS GENERATED - DO NOT MODIFY
