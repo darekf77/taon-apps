@@ -54,7 +54,7 @@ console.log('🚀 [ TAON IS STARTING (server=3) ]');
 
 //#region  backend-backend-realtime-server-3 entity
 @TaonEntity({ className: 'UserServer3' })
-class UserServer3 extends TaonBaseAbstractEntity {
+export class UserServer3 extends TaonBaseAbstractEntity {
   //#region @websql
   @StringColumn()
   //#endregion
@@ -68,7 +68,7 @@ class UserServer3 extends TaonBaseAbstractEntity {
 
 //#region  backend-backend-realtime-server-3 controller
 @TaonController({ className: 'UserServer3Controller' })
-class UserServer3Controller extends TaonBaseCrudController<UserServer3> {
+export class UserServer3Controller extends TaonBaseCrudController<UserServer3> {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   entityClassResolveFn = () => UserServer3;
 
@@ -100,7 +100,7 @@ class UserServer3Controller extends TaonBaseCrudController<UserServer3> {
 @TaonMigration({
   className: 'UserServer3Migration',
 })
-class UserServer3Migration extends TaonBaseMigration {
+export class UserServer3Migration extends TaonBaseMigration {
   userController = this.injectRepo(UserServer3);
 
   async up(): Promise<any> {
@@ -114,7 +114,7 @@ class UserServer3Migration extends TaonBaseMigration {
 //#endregion
 
 //#region  backend-backend-realtime-server-3 context
-var BackendBackendRealtimeServer3Context = Taon.createContext(() => ({
+export var BackendBackendRealtimeServer3Context = Taon.createContext(() => ({
   ...HOST_CONFIG['BackendBackendRealtimeServer3Context'],
   contexts: { TaonBaseContext },
 

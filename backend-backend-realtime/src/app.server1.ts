@@ -2,59 +2,31 @@
 import * as os from 'os'; // @backend
 
 import {
-  provideClientHydration,
-  withEventReplay,
-} from '@angular/platform-browser';
-import {
-  provideRouter,
-  Router,
-  RouterLinkActive,
-  RouterModule,
-  RouterOutlet,
-  ActivatedRoute,
-  Routes,
-  Route,
-  withHashLocation,
-  withComponentInputBinding,
-} from '@angular/router';
-import { provideServiceWorker } from '@angular/service-worker';
-import { provideServerRendering, withRoutes } from '@angular/ssr';
-import { RenderMode, ServerRoute } from '@angular/ssr';
-
-import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
-import {
   Taon,
   TaonBaseContext,
-  TAON_CONTEXT,
   EndpointContext,
-  TaonBaseAngularService,
   TaonEntity,
   StringColumn,
   TaonBaseAbstractEntity,
-  TaonBaseCrudController,
   TaonController,
   GET,
-  TaonMigration,
-  TaonBaseMigration,
   TaonContext,
+  TaonBaseController,
 } from 'taon/src';
 
-import { TaonStor } from 'taon-storage/src';
-
-import { Utils, UtilsOs } from 'tnp-core/src';
-
 import { HOST_CONFIG } from './app.hosts';
-import { ENV_ANGULAR_NODE_APP_BUILD_PWA_DISABLE_SERVICE_WORKER } from './lib/env/env.angular-node-app';
+import { BackendBackendRealtimeServer2ContextRemote } from './app.server2';
 // @placeholder-for-imports
 //#endregion
 
 //#region constants
 console.log('🚀 [ TAON IS STARTING (server=1) ]');
+
 //#endregion
 
 //#region  backend-backend-realtime-server-1 entity
 @TaonEntity({ className: 'UserServer1' })
-class UserServer1 extends TaonBaseAbstractEntity {
+export class UserServer1 extends TaonBaseAbstractEntity {
   //#region @websql
   @StringColumn()
   //#endregion
@@ -68,65 +40,45 @@ class UserServer1 extends TaonBaseAbstractEntity {
 
 //#region  backend-backend-realtime-server-1 controller
 @TaonController({ className: 'UserServer1Controller' })
-class UserServer1Controller extends TaonBaseCrudController<UserServer1> {
+export class UserServer1Controller extends TaonBaseController<UserServer1> {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   entityClassResolveFn = () => UserServer1;
 
   @GET()
-  helloWorld(): Taon.Response<string> {
+  notifyS2(): Taon.Response<string> {
     //#region @websqlFunc
-    return async (req, res) => 'hello world';
+    return async (req, res) => {
+      const instances2 = BackendBackendRealtimeServer2ContextRemote;
+      instances2.realtime.server.triggerCustomEvent('dupa', {
+        notifyS2: 'notifyS2',
+        ...(req.query || {}),
+      });
+
+      return 'S2 notified';
+    };
     //#endregion
   }
 
   @GET()
-  getOsPlatform(): Taon.Response<string> {
+  notifySelf(): Taon.Response<string> {
     //#region @websqlFunc
     return async (req, res) => {
-      //#region @backend
-      return os.platform(); // for normal nodejs backend return real value
-      //#endregion
+      const instances1 = BackendBackendRealtimeServer1Context;
+      instances1.realtime.server.triggerCustomEvent('dupa', {
+        notifySelf: 'notifySelf',
+      });
 
-      return 'no-platform-inside-browser-and-websql-mode';
+      return 'self notified';
     };
     //#endregion
   }
 }
 //#endregion
 
-//#region  backend-backend-realtime-server-1 migration
-
-//#region @websql
-@TaonMigration({
-  className: 'UserServer1Migration',
-})
-class UserServer1Migration extends TaonBaseMigration {
-  userController = this.injectRepo(UserServer1);
-
-  async up(): Promise<any> {
-    const superAdmin = new UserServer1();
-    superAdmin.name = 'super-admin';
-    await this.userController.save(superAdmin);
-  }
-}
-//#endregion
-
-//#endregion
-
 //#region  backend-backend-realtime-server-1 context
-var BackendBackendRealtimeServer1Context = Taon.createContext(() => ({
+export var BackendBackendRealtimeServer1Context = Taon.createContext(() => ({
   ...HOST_CONFIG['BackendBackendRealtimeServer1Context'],
   contexts: { TaonBaseContext },
-
-  //#region @websql
-  /**
-   * In production use specyfic for this context name
-   * generated migration object from  ./migrations/index.ts.
-   */
-  migrations: {
-    UserServer1Migration,
-  },
-  //#endregion
 
   controllers: {
     UserServer1Controller,
@@ -135,15 +87,43 @@ var BackendBackendRealtimeServer1Context = Taon.createContext(() => ({
     UserServer1,
   },
   database: true,
-  disabledRealtime: true,
+  logs: {
+    realtime: true,
+    // framework: true,
+  },
+  // disabledRealtime: true,
 }));
 //#endregion
+
+export const BackendBackendRealtimeServer1ContextRemote =
+  BackendBackendRealtimeServer1Context.cloneAsRemote();
 
 //#region  backend-backend-realtime-server-1 start function
 export const BackendBackendRealtimeServer1StartFunction = async (
   startParams?: Taon.StartParams,
 ): Promise<void> => {
   await BackendBackendRealtimeServer1Context.initialize();
+  await BackendBackendRealtimeServer2ContextRemote.initialize();
+
+  BackendBackendRealtimeServer1Context.realtime.client
+    .listenChangesCustomEvent('dupa')
+    .subscribe(data => {
+      console.log('s1 client receiving data', { data });
+    });
+
+  BackendBackendRealtimeServer1Context.realtime.server
+    .listenChangesCustomEvent('dupa')
+    .subscribe(data => {
+      console.log('s1 server receiving data', { data });
+    });
+
+  BackendBackendRealtimeServer1Context.realtime.client
+    .listenChangesEntity(UserServer1, {
+      idOrUniqValue: 'name',
+    })
+    .subscribe(data => {
+      console.log('s1 UserServer1 receiving data', { data });
+    });
 
   //#region initialize auto generated active contexts
   const autoGeneratedActiveContextsForApp: TaonContext[] = [

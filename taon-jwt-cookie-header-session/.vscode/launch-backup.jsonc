@@ -50,42 +50,6 @@
       ]
     },
     {
-      "type": "node",
-      "request": "launch",
-      "name": "Run Server 1",
-      "program": "${workspaceFolder}/run.js",
-      "args": [
-        "additionalEntrypointId=1"
-      ],
-      "runtimeArgs": [
-        "--preserve-symlinks"
-      ]
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Run Server 2",
-      "program": "${workspaceFolder}/run.js",
-      "args": [
-        "additionalEntrypointId=2"
-      ],
-      "runtimeArgs": [
-        "--preserve-symlinks"
-      ]
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Run Server 3",
-      "program": "${workspaceFolder}/run.js",
-      "args": [
-        "additionalEntrypointId=3"
-      ],
-      "runtimeArgs": [
-        "--preserve-symlinks"
-      ]
-    },
-    {
       "name": "Run Electron",
       "type": "node",
       "request": "launch",
@@ -123,31 +87,11 @@
         "!**/node_modules/**"
       ],
       "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}/tmp-vscode-proj/development/backend-backend-realtime"
+        "--extensionDevelopmentPath=${workspaceFolder}/tmp-vscode-proj/development/taon-jwt-cookie-header-session"
       ],
       "preLaunchTask": "Update package.json vscode metadata"
     }
   ],
-  "compounds": [
-    {
-      "name": "Run All Server",
-      "stopAll": true,
-      "configurations": [
-        "Run Server for app.ts",
-        "Run Server 1",
-        "Run Server 2",
-        "Run Server 3"
-      ]
-    },
-    {
-      "name": "Run All Additional Server",
-      "stopAll": true,
-      "configurations": [
-        "Run Server 1",
-        "Run Server 2",
-        "Run Server 3"
-      ]
-    }
-  ]
+  "compounds": []
 }
 // THIS FILE IS GENERATED - DO NOT MODIFY

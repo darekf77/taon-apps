@@ -69,6 +69,11 @@
       "repoUrl": "git@github.com:darekf77/backend-backend-realtime.git",
       "defaultBranch": "master",
       "relativeClonePath": "backend-backend-realtime"
+    },
+    {
+      "repoUrl": "git@github.com:darekf77/taon-jwt-cookie-header-session.git",
+      "defaultBranch": "master",
+      "relativeClonePath": "taon-jwt-cookie-header-session"
     }
   ]
 }

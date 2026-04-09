@@ -5,8 +5,8 @@
   }],
 
   "workbench.colorCustomizations": {
-    "activityBar.background": "#bd4c99",
-    "statusBar.background": "#30d987",
+    "activityBar.background": "#3c289f",
+    "statusBar.background": "#704bb9",
     "statusBar.debuggingBackground": "#15d8ff"
   },
 
@@ -118,7 +118,7 @@
     ".tnp": true
   },
 
-  "window.title": "npm/taon-apps/backend-backend-realtime  [ ${activeEditorShort} ]",
+  "window.title": "npm/taon-apps/taon-jwt-cookie-header-session  [ ${activeEditorShort} ]",
 
   "files.exclude": {
     "_changelog": true,
