@@ -4,10 +4,15 @@
   "appId": "com.domain.example.taon-apps",
   "monorepo": true,
 
+  "removeAfterPullingFromGit": [
+    "taon-session",
+    "taon-jwt-cookie-header-session",
+  ],
+
   "packageJsonOverride": {
     "author": "Dfilipiak",
     "description": "Description for taon-apps. Hello world!",
     "private": true,
-    "scripts": {}
-  }
+    "scripts": {},
+  },
 }

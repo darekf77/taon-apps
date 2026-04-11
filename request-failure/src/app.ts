@@ -197,7 +197,7 @@ class UserController extends Taon.Base.CrudController<User> {
 
         return this.helloWorld().request();
       },
-      statusCheck: response => response.body.text === 'hello world niga',
+      statusCheck: response => response.body.text === 'hello world',
       loopRequestsOnBackendError: ({ taonError, reqIndexNum }) => {
         if (taonError) {
           console.warn(taonError.body.json);
