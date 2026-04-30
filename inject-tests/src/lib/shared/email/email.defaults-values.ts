@@ -1,4 +1,6 @@
+//#region imports
 import type { Email } from './email';
+//#endregion
 
 export const EmailDefaultsValues = {
   description: '',

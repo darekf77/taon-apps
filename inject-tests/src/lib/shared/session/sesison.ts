@@ -1,16 +1,25 @@
+//#region imports
 import { Taon } from 'taon/src';
+import {
+  TaonBaseEntity,
+  TaonEntity,
+  PrimaryGeneratedColumn,
+  Generated,
+  NumberColumn,
+} from 'taon/src';
+//#endregion
 
-@Taon.Entity({
+@TaonEntity({
   className: 'Session',
 })
-export class Session extends Taon.Base.Entity {
+export class Session extends TaonBaseEntity {
   //#region @websql
-  @Taon.Orm.Column.Generated()
+  @PrimaryGeneratedColumn()
   //#endregion
   id: string;
 
   //#region @websql
-  @Taon.Orm.Column.Number()
+  @NumberColumn()
   //#endregion
   timeout: number;
 }

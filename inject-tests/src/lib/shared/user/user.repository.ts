@@ -1,20 +1,27 @@
+//#region imports
 import { Taon } from 'taon/src';
+import { TaonBaseRepository, TaonRepository } from 'taon/src';
 
+import { Email } from '../email';
 import { EmailRepository } from '../email/email.repository';
 
 import { User } from './user';
-import { Email } from '../email';
+//#endregion
 
-@Taon.Repository({
+@TaonRepository({
   className: 'UserRepository',
 })
-export class UserRepository extends Taon.Base.Repository<User> {
+export class UserRepository extends TaonBaseRepository<User> {
   entityClassResolveFn = () => User;
 
   emailCustomRepository = this.injectCustomRepository(EmailRepository);
+
   emailRepo = this.injectRepo(Email);
+
   emailRepo2 = this.injectRepo(Email);
+
   amCustomRepository = 'testingisnoin';
+
   async findByEmail(email: string) {
     //#region @websqlFunc
     return this.repo.findOne({ where: { email } });

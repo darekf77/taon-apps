@@ -1,5 +1,5 @@
 //#region imports
-import { Taon, BaseContext } from 'taon/src';
+import { Taon, TaonBaseContext } from 'taon/src';
 
 import { Email } from './email';
 import { EmailController } from './email.controller';
@@ -9,7 +9,7 @@ import { EmailRepository } from './email.repository';
 export const EmailContext = Taon.createContext(() => ({
   contextName: 'EmailContext',
   abstract: true,
-  contexts: { BaseContext },
+  contexts: { TaonBaseContext },
   entities: { Email },
   controllers: { EmailController },
   repositories: { EmailRepository },

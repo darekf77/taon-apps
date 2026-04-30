@@ -1,15 +1,21 @@
+//#region imports
 import { ClassHelpers, Taon } from 'taon/src';
+import { TaonBaseCrudController, TaonController } from 'taon/src';
+
 import { SharedContext } from '../shared.context';
+
 import { User } from './user';
 import { UserRepository } from './user.repository';
+//#endregion
 
-@Taon.Controller({
+@TaonController({
   className: 'UserController',
 })
-export class UserController extends Taon.Base.CrudController<User> {
+export class UserController extends TaonBaseCrudController<User> {
   entityClassResolveFn = () => User;
 
   userCustomRepository?: UserRepository = this.injectCustomRepo(UserRepository);
+
   userCrudRepository = this.injectRepo(User);
 
   async initExampleDbData(): Promise<any> {

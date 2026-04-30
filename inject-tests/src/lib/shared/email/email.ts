@@ -1,17 +1,19 @@
 //#region imports
 import { Taon } from 'taon/src';
+import { TaonBaseAbstractEntity, TaonEntity, StringColumn } from 'taon/src';
 import { _ } from 'tnp-core/src';
 
 import { EmailDefaultsValues } from './email.defaults-values';
+
 //#endregion
 
-@Taon.Entity({
+@TaonEntity({
   className: 'Email',
   createTable: true,
 })
-export class Email extends Taon.Base.AbstractEntity<Email> {
+export class Email extends TaonBaseAbstractEntity<Email> {
   //#region @websql
-  @Taon.Orm.Column.String()
+  @StringColumn()
   //#endregion
   address?: string;
 }

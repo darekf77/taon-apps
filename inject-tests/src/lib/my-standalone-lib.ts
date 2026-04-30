@@ -1,3 +1,1 @@
-export function helloStandaloenApp() {
-
-}
+export function helloStandaloenApp() {}

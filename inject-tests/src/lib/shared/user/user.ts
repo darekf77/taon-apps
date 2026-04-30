@@ -1,31 +1,41 @@
+//#region imports
 import { Taon } from 'taon/src';
+import {
+  TaonBaseEntity,
+  TaonEntity,
+  PrimaryGeneratedColumn,
+  Generated,
+  StringColumn,
+} from 'taon/src';
+//#endregion
 
-@Taon.Entity({
+@TaonEntity({
   className: 'User',
   createTable: true,
 })
-export class User extends Taon.Base.Entity {
+export class User extends TaonBaseEntity {
   //#region @websql
-  @Taon.Orm.Column.Generated()
+  @PrimaryGeneratedColumn()
   //#endregion
   id: string;
 
   //#region @websql
-  @Taon.Orm.Column.String()
+  @StringColumn()
   //#endregion
   name: string;
 
   //#region @websql
-  @Taon.Orm.Column.String()
+  @StringColumn()
   //#endregion
   email: string;
 
   //#region @websql
-  @Taon.Orm.Column.String()
+  @StringColumn()
   //#endregion
   password: string;
-   //#region @websql
-   @Taon.Orm.Column.String()
-   //#endregion
-   theme: string;
+
+  //#region @websql
+  @StringColumn()
+  //#endregion
+  theme: string;
 }

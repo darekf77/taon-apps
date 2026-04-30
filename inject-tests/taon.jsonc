@@ -1,12 +1,17 @@
 {
   "type": "isomorphic-lib",
-  "version": "v19",
+  "version": "v21",
+  "dependenciesNamesForNpmLib": ["@angular/core", "rxjs", "rxjs/operators"],
   "appId": "com.domain.example.inject-tests",
+  "isomorphicDependenciesForNpmLib": ["taon", "taon-typeorm", "tnp-core"],
+  "peerDependenciesNamesForNpmLib": [],
   "resources": [],
+  "shouldGenerateAutogenIndexFile": true,
 
   "packageJsonOverride": {
     "author": "Dariusz Filipiak",
+    "description": "Description for inject-tests. Hello world!",
     "private": true,
-    "description": "Description for inject-tests. Hello world!"
+    "scripts": {},
   }
 }

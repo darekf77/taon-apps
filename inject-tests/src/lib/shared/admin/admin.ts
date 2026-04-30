@@ -1,13 +1,17 @@
+//#region imports
 import { Taon } from 'taon/src';
-import { User } from '../user/user';
+import { TaonEntity, StringColumn } from 'taon/src';
 
-@Taon.Entity({
+import { User } from '../user/user';
+//#endregion
+
+@TaonEntity({
   className: 'Admin',
   createTable: true,
 })
 export class Admin extends User {
   //#region @websql
-  @Taon.Orm.Column.String()
+  @StringColumn()
   //#endregion
   permissions: string;
 }

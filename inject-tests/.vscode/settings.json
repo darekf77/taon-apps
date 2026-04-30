@@ -1,65 +1,92 @@
 {
   "files.exclude": {
-    "**/*____ORIGINAL____.ts": true,
     "_changelog": true,
-    "*.sh": true,
-    "*.xlsx": true,
-    "scripts": true,
-    "**/node_modules": true,
-    "**/tmp*": true,
-    "**/dist*": true,
-    "**/browser": true,
-    "**/websql": true,
-    "**/websql*": true,
-    "**/module*": true,
-    "**/backup": true,
-    "**/module": true,
-    "**/www": true,
-    "**/Thumbs.db": true,
+    ".sass-cache": true,
+    ".sourcemaps": true,
+    ".DS_Store": true,
     "**/.DS_Store": true,
-    "**/**/.DS_Store": true,
-    "**/npm-debug.log*": true,
-    "**/.sass-cache": true,
-    "**/.sourcemaps": true,
-    "**/tsconfig.isomorphic.json": true,
-    "**/tsconfig.isomorphic-flat-dist.json": true,
-    "**/tsconfig.browser.json": true,
-    "**/tsconfig.json": true,
-    "**/tsconfig.backend.dist.json": true,
-    "**/projects/tmp*": true,
-    "**/.gitignore": true,
-    "**/.npmignore": true,
-    "**/.babelrc": true,
-    "**/.npmrc": true,
-    "**/.prettierignore": true,
-    "**/.prettierrc": true,
-    "**/.editorconfig": true,
-    "**/devDependencies.json": true,
-    "**/package.json": true,
-    "**/logo.svg": true,
-    ".firedev": true,
-    ".taon": true,
+    "npm-debug.log": true,
+    "yarn-error.log": true,
+    "testem.log": true,
+    "connect.lock": true,
+    "node_modules": true,
+    "**/node_modules": true,
+    "libpeerconnection.log": true,
+    "dist": true,
+    "coverage": true,
+    "Thumbs.db": true,
+    "browser": true,
+    "**/browser": true,
+    "websql": true,
+    "**/websql": true,
+    "eslint-rules": true,
+    "dist-prod": true,
+    "dist-nocutsrc": true,
+    "dist-nocutsrc-prod": true,
+    "package-lock.json": true,
+    "chrome-profiler-events*.json": true,
+    "speed-measure-plugin*.json": true,
+    "tmp*": true,
+    "npm-debug.log*": true,
+    "tmp-*": true,
+    "**/tmp-*": true,
+    "dist*": true,
+    "**/dist*": true,
     ".tnp": true,
-    "**/*.filetemplate": true,
-    "**/tsconfig.*": true,
-    "**/tslint.*": true,
-    "**/recent.json": true,
-    "**/angular.json": true,
+    "**/.tnp": true,
+    ".taon": true,
+    "**/.taon": true,
+    "tsconfig*": true,
+    "**/tsconfig*": true,
+    "*.schema.json": true,
+    "**/*.schema.json": true,
+    "eslint*": true,
+    "**/eslint*": true,
+    "run.js": true,
+    "**/run.js": true,
+    "webpack*": true,
     "**/webpack*": true,
-    "**/run-*": true,
-    "**/run.*": true,
-    "**/package-lock.json": true,
-    "**/protractor.conf.js": true,
-    "**/karma.conf.js": true,
-    "**/eslint.config.js": true,
-    "**/update-vscode-package-json.js": true,
-    "**/.eslintrc.json": true,
-    "**/docs-config.schema.json": true,
-    "**/taon-config-standalone.schema.json": true,
-    "**/taon-config-container.schema.json": true,
+    "index.js": true,
     "**/index.js": true,
+    "index.js.map": true,
+    "**/index.js.map": true,
+    "index.d.ts": true,
     "**/index.d.ts": true,
-    "**/index.js.map": true
+    "vitest.config.ts": true,
+    "**/vitest.config.ts": true,
+    ".gitignore": true,
+    "**/.gitignore": true,
+    ".npmignore": true,
+    "**/.npmignore": true,
+    ".npmrc": true,
+    "**/.npmrc": true,
+    ".prettierrc": true,
+    "**/.prettierrc": true,
+    ".prettierignore": true,
+    "**/.prettierignore": true,
+    "update-vscode-package-json.js": true,
+    "**/update-vscode-package-json.js": true,
+    ".editorconfig": true,
+    "**/.editorconfig": true,
+    "package.json": true,
+    "**/package.json": true,
+    "*.filetemplate": true,
+    "**/*.filetemplate": true,
+    ".babelrc": true,
+    "eslint.config.js": true,
+    "protractor.conf.js": true,
+    "karma.conf.js": true,
+    ".prettierc": true,
+    "angular.json": true,
+    ".prettierrc.json": true,
+    ".eslintrc.js": true,
+    ".eslintrc.json": true,
+    ".yarnrc": true,
+    ".idea": true,
+    "webpack.*": true,
+    ".eslintrc*": true,
+    "tslint.*": true,
+    "!templates-subprojects/**/package.json": true
   },
 
   "workbench.colorCustomizations": {
@@ -69,10 +96,7 @@
     "statusBar.debuggingBackground": "#15d8ff"
   },
 
-  "editor.rulers": [
-    80,
-    120
-  ],
+  "editor.rulers": [80, 120],
 
   "html.format.wrapAttributes": "force-aligned",
   "workbench.colorTheme": "Default Light+",
@@ -108,7 +132,11 @@
     "tmp-*": true,
     "src/lib/env/**/*.*": true,
     "**/tmp-*": true,
-    "**/src/lib/env/**/*.*": true
+    "**/src/lib/env/**/*.*": true,
+    "dist-*": true,
+    "*.rest": true,
+    "**/dist-*": true,
+    "**/*.rest": true
   },
 
   "[typescriptreact]": {
@@ -160,21 +188,21 @@
   "window.title": "npm/taon-apps/inject-tests  [ ${activeEditorShort} ]",
   "search.useIgnoreFiles": false,
 
-  "search.include": [
-    "**/src/**"
-  ],
+  "search.include": ["**/src/**"],
 
   "json.schemas": [
     {
-      "fileMatch": [
-        "/taon.jsonc"
-      ],
+      "fileMatch": ["/taon.jsonc"],
       "url": "./taon-config-standalone.schema.json"
     }
   ],
 
   "files.watcherExclude": {
-    "local_release/**": true
+    "local_release/**": true,
+    "tmp-*/**": true,
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/dist-nocutsrc/**": true
   },
 
   "[markdown]": {
@@ -185,5 +213,14 @@
   "[dockercompose]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
-  }
+  },
+
+  "typescript.suggest.autoImports": false,
+  "javascript.suggest.autoImports": false,
+
+  "files.associations": {
+    "tsconfig.json": "json"
+  },
+
+  "search.followSymlinks": false
 }

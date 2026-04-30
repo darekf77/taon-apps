@@ -1,15 +1,17 @@
 //#region imports
 import { Taon } from 'taon/src';
+import { TaonBaseRepository, TaonController } from 'taon/src';
 import { Raw } from 'taon-typeorm/src';
 import { _ } from 'tnp-core/src';
 
 import { Email } from './email';
+
 //#endregion
 
-@Taon.Controller({
+@TaonController({
   className: 'EmailRepository',
 })
-export class EmailRepository extends Taon.Base.Repository<Email> {
+export class EmailRepository extends TaonBaseRepository<Email> {
   entityClassResolveFn: () => typeof Email = () => Email;
 
   /**

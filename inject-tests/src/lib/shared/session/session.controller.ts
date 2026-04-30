@@ -1,22 +1,27 @@
+//#region imports
 import { Taon } from 'taon/src';
-import { SharedContext } from '../shared.context';
-import { Session } from './sesison';
+import { TaonBaseCrudController, TaonController } from 'taon/src';
 import { EntityOptions } from 'taon-typeorm/src';
+
 import { Admin } from '../admin/admin';
 import { AdminController } from '../admin/admin.controller';
+import { SharedContext } from '../shared.context';
 import { UserRepository } from '../user/user.repository';
 
-@Taon.Controller({
+import { Session } from './sesison';
+//#endregion
+
+@TaonController({
   className: 'SessionController',
 })
-export class SessionController extends Taon.Base.CrudController<Session> {
+export class SessionController extends TaonBaseCrudController<Session> {
   entityClassResolveFn = () => Session;
 
   userCustomRepo = this.injectCustomRepo(UserRepository);
+
   adminController = this.injectController(AdminController);
 
   sessionRepo = this.injectRepo(Session);
-
 
   async initExampleDbData(): Promise<any> {
     //#region @websql
@@ -25,10 +30,10 @@ export class SessionController extends Taon.Base.CrudController<Session> {
     console.log(this.adminController.helloWorldFromAdmin);
     console.log('userCustomRepo', this.userCustomRepo.amCustomRepository);
 
-    const session = new (Session)();
+    const session = new Session();
     session.timeout = 3999;
     await this.db.save(session);
-    const session2 = new (Session)();
+    const session2 = new Session();
     session2.timeout = 234;
     await this.sessionRepo.save(session2 as any);
 

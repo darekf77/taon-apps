@@ -6,7 +6,20 @@ const fse = require('fs-extra');
 const argsMinimist = require('minimist')(process.argv);
 
 const pathToDist = path.join(process.cwd(), 'dist');
+
 const pathToDistApp = path.join(pathToDist, 'app.js');
+
+try {
+  fse.ensureDirSync(path.join(process.cwd(), 'databases'));
+} catch (error) {
+
+}
+
+try {
+  fse.ensureDirSync(path.join(process.cwd(), 'routes'));
+} catch (error) {
+
+}
 
 const encoding = 'utf8';
 var secondsWaitAfterDistDetected = 5;
@@ -37,12 +50,22 @@ if (messageWasShown) {
 }
 
 const PROJECT_NPM_NAME = require('./dist/lib/build-info._auto-generated_.js').PROJECT_NPM_NAME;
-console.log({PROJECT_NPM_NAME})
+console.log({PROJECT_NPM_NAME});
 
 var app = require('./dist/app').default;
+var ContextsEndpointStorageInstance = globalThis['$$$ContextsEndpointStorage$$$'];
+
 app({
    onlyMigrationRun: argsMinimist.onlyMigrationRun,
    onlyMigrationRevertToTimestamp: argsMinimist.onlyMigrationRevertToTimestamp,
    args: [process.argv.slice(2).map(c => `"${c}"`).join(',')]
+}).then(async () => {
+  const endpoints = ContextsEndpointStorageInstance.arr || [];
+  await Promise.all(endpoints.map(c => c.initControllersHook(ContextsEndpointStorageInstance)));
+  console.log(ContextsEndpointStorageInstance.SPECIAL_APP_READY_MESSAGE);
+}).catch(err => {
+  console.error(err);
+  console.error('App Start Error');
+  process.exit(1);
 });
 process.stdin.resume();
